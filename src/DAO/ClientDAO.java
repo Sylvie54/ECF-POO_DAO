@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import metier.classes.Client;
+import metier.classes.Contrat;
 import metier.classes.ListeClients;
 
 
@@ -140,5 +141,49 @@ public class ClientDAO extends DAO<Client> {
             SQLex.printStackTrace();
         }
     }
+     
+    public Client find(String rsSociete) throws Exception {
+        Client client=null;
+        try {
+            PreparedStatement stm = conn.prepareStatement("SELECT *  FROM client where raisonsociale =  ?"); 
+            stm.setString(1, rsSociete);
+            resultat = stm.executeQuery();
+            int idClient = 0;
+            while (resultat.next())
+            {
+                idClient =resultat.getInt("id");
+                client = new Client(resultat.getInt("id"),
+                        resultat.getString("raisonsociale"),
+                        resultat.getString("adresse"),
+                        resultat.getInt("chiffreaffaire"));
+                ListeClients.getListeClient().add(client);
+            }
+            System.out.println(idClient);
+            PreparedStatement stmContrat = conn.prepareStatement("SELECT *  FROM contrat where idclient =  ?"); 
+            stmContrat.setInt(1, idClient);
+            resultat = stmContrat.executeQuery();
+            while (resultat.next())
+            {
+                Contrat contrat;
+                contrat = new Contrat(resultat.getInt("idContrat"),
+                        resultat.getString("libellecontrat"),
+                        resultat.getDouble("montantContrat"),
+                        resultat.getDate("datedebcontrat").toLocalDate(),
+                        resultat.getDate("datefincontrat").toLocalDate());
+                        System.out.println("passage contrat");
+                        client.getListeContrats().add(contrat);
+            }
+    
+        }
+        catch ( SQLException e )
+        {
+            throw new Exception (e.getMessage());
+        }
+        finally {
+            resultat.close();
+        }
+        return client;
+    }
+
  
 }

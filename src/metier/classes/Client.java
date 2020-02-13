@@ -5,8 +5,9 @@
  */
 package metier.classes;
 
-// import java.util.Date;
+import metier.classes.Contrat;
 
+import java.util.ArrayList;
 import metier.exceptions.MetiersException;
 
 
@@ -21,6 +22,7 @@ public class Client extends Societe {
     
     private int nbContrats;
     private float montantContrats;
+    private ArrayList<Contrat> listeContrats = new ArrayList<Contrat>();
  
     /**
      * Nombre des contrats
@@ -137,6 +139,14 @@ public class Client extends Societe {
     @Override
     public String toString() {
         return this.getRsSociete() + " " + this.getAdrSociete() + " " + this.getCaSociete();
+    }
+
+    public ArrayList<Contrat> getListeContrats() {
+        return listeContrats;
+    }
+
+    public void setListeContrats(ArrayList<Contrat> listeContrats) {
+        this.listeContrats = listeContrats;
     }
     
     

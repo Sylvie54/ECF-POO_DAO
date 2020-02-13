@@ -148,5 +148,9 @@ public class ProspectDAO extends DAO<Prospect>{
             SQLex.printStackTrace();
         }
     }
+    public Prospect find(String rsSociete) throws Exception {
+        Prospect prospect = null;
+        return prospect;
+    }
  
 }

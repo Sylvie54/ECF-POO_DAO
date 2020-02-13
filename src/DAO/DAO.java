@@ -56,5 +56,7 @@ public abstract class DAO<T> {
      * @throws java.lang.Exception
   */
   public abstract ArrayList<T> liste() throws Exception;
+  
+  public abstract T find(String raisonSociale) throws Exception;
 }
 
