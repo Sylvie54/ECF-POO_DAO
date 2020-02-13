@@ -311,6 +311,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panelAction.setVisible(false);
         panelCombo.setVisible(false);
         btnRetour.setVisible(false);
+         btnAffichageContrat.setVisible(true);
     }//GEN-LAST:event_btnRetourActionPerformed
 
    /**
@@ -375,6 +376,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panelAction.setVisible(true);
         panelChoix.setVisible(false);
         btnRetour.setVisible(true);
+        btnAffichageContrat.setVisible(false);
     }//GEN-LAST:event_btnProspectActionPerformed
 
     private void btnSuppressionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuppressionActionPerformed

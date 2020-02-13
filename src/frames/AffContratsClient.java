@@ -5,14 +5,13 @@
  */
 package frames;
 
-import DAO.ClientDAO;
 import DAO.DAO;
 import DAO.DAOFactory;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import metier.classes.Client;
-import metier.classes.Societe;
+import metier.classes.Contrat;
 
 /**
  *
@@ -36,23 +35,25 @@ public class AffContratsClient extends javax.swing.JFrame {
             String entete[] = {"identifiant", "libelle", "montant", "date de début de contrat", "date de fin de contrat"};
             modelSociete = new DefaultTableModel(new Object[][]{}, entete);
             lblTitre.setText("Liste des contrats pour le client : " + client.getRsSociete());
-           
-       
-            client.getListeContrats().forEach((contrat) -> {
-            modelSociete.addRow(new Object[]{contrat.getIdContrat(),
-                                            contrat.getLibelleContrat(),
-                                            contrat.getMontantContrat(),
-                                            contrat.getDateDebutContrat(),
-                                            contrat.getDateFinContrat()});
-           
-            });
-        
+            Double total = 0.0;
+            for (Contrat contrat : client.getListeContrats()) {
+         
+                total = total + contrat.getMontantContrat();
+                modelSociete.addRow(new Object[]{contrat.getIdContrat(),
+                                                contrat.getLibelleContrat(),
+                                                contrat.getMontantContrat(),
+                                                contrat.getDateDebutContrat(),
+                                                contrat.getDateFinContrat()});
+            }
+        lblTotalContrats.setText("montant total des contrats : " + total);
         jtblListeContrats.setModel(modelSociete);
         jtblListeContrats.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumnModel columnModel = jtblListeContrats.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(80);
         columnModel.getColumn(1).setPreferredWidth(200);
-        columnModel.getColumn(2).setPreferredWidth(200);
+        columnModel.getColumn(2).setPreferredWidth(100);
+        columnModel.getColumn(3).setPreferredWidth(200);
+        columnModel.getColumn(4).setPreferredWidth(200);
         jtblListeContrats.setRowHeight(30);
         
     }    
@@ -69,8 +70,12 @@ public class AffContratsClient extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblListeContrats = new javax.swing.JTable();
         btnRetour = new javax.swing.JButton();
+        btnQuitter = new javax.swing.JButton();
+        lblTotalContrats = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblTitre.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
 
         jtblListeContrats.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,33 +97,52 @@ public class AffContratsClient extends javax.swing.JFrame {
             }
         });
 
+        btnQuitter.setText("Quitter");
+        btnQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitterActionPerformed(evt);
+            }
+        });
+
+        lblTotalContrats.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(282, 282, 282)
-                        .addComponent(lblTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 936, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(54, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnQuitter)
+                .addGap(67, 67, 67)
                 .addComponent(btnRetour)
                 .addGap(67, 67, 67))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 936, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(98, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(lblTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTotalContrats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(79, 79, 79))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(lblTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lblTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(lblTotalContrats, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(73, 73, 73)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(btnRetour)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRetour)
+                    .addComponent(btnQuitter))
                 .addGap(33, 33, 33))
         );
 
@@ -130,6 +154,10 @@ public class AffContratsClient extends javax.swing.JFrame {
         menuprincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRetourActionPerformed
+
+    private void btnQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitterActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_btnQuitterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,9 +195,11 @@ public class AffContratsClient extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnQuitter;
     private javax.swing.JButton btnRetour;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtblListeContrats;
     private javax.swing.JLabel lblTitre;
+    private javax.swing.JLabel lblTotalContrats;
     // End of variables declaration//GEN-END:variables
 }
