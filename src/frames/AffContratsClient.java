@@ -7,14 +7,12 @@ package frames;
 
 import DAO.DAO;
 import DAO.DAOFactory;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import metier.classes.Client;
 import metier.classes.Contrat;
+import utilitaires.Utilitaire;
 
 /**
  * interface d'affichage des contrats d'un client sélectionné dans le menu principal
@@ -35,7 +33,6 @@ public class AffContratsClient extends javax.swing.JFrame {
      */
     public AffContratsClient(String raisonSociale) throws Exception {
         initComponents();
-        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd MMM YYYY");
         DAO<Client> clientDao = DAOFactory.getClientDAO();
         Client client = clientDao.find(raisonSociale);
         DefaultTableModel modelSociete;
@@ -46,8 +43,9 @@ public class AffContratsClient extends javax.swing.JFrame {
         
         for (Contrat contrat : client.getListeContrats()) {
             total = total + contrat.getMontantContrat();
-            String dateDebut = contrat.getDateDebutContrat().format(formatDate);
-            String dateFin = contrat.getDateFinContrat().format(formatDate);
+            // affiche les dates au format donné par la constante FORMADATE de la classe Utilitaire du packages utilitaires
+            String dateDebut = contrat.getDateDebutContrat().format(Utilitaire.FORMADATE);
+            String dateFin = contrat.getDateFinContrat().format(Utilitaire.FORMADATE);
             modelSociete.addRow(new Object[]{contrat.getIdContrat(),
                                             contrat.getLibelleContrat(),
                                             contrat.getMontantContrat(),

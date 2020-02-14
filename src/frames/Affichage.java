@@ -39,9 +39,9 @@ public class Affichage extends javax.swing.JFrame {
        //   for (Societe societe : Client.getListeClient()) {
             ListeClients.getListeClient().forEach((societe) -> {
             modelSociete.addRow(new Object[]{societe.getIdSociete(),
-                                            societe.getRsSociete(),
-                                            societe.getAdrSociete(),
-                                            societe.getCaSociete()});
+                societe.getRsSociete(),
+                societe.getAdrSociete(),
+                societe.getCaSociete()});
             });
         }
         else {
@@ -51,19 +51,20 @@ public class Affichage extends javax.swing.JFrame {
             titre.setText("liste des prospects");
              String interre;
             for (Prospect prospect : ListeProspects.getListeProspects()) {
-                if (prospect.getInterresse() == 1) {
+                if (prospect.getInterresse() == 0) {
                     interre = "oui";
                 }
                 else {
                     interre = "non";
                 } 
                 System.out.println("for prospect");
-            modelSociete.addRow(new Object[]{prospect.getIdSociete(),
-                                            prospect.getRsSociete(),
-                                            prospect.getAdrSociete(),
-                                            prospect.getCaSociete(),
-                                            prospect.getDateProspection(),
-                                            interre});
+                modelSociete.addRow(new Object[]{prospect.getIdSociete(),
+                prospect.getRsSociete(),
+                prospect.getAdrSociete(),
+                prospect.getCaSociete(),
+                // affiche la date au format donné par la constante FORMADATE de la classe Utilitaire du packages utilitaires 
+                prospect.getDateProspection().format(utilitaires.Utilitaire.FORMADATE),
+                interre});
             }
             
         }
@@ -74,8 +75,9 @@ public class Affichage extends javax.swing.JFrame {
         columnModel.getColumn(0).setPreferredWidth(80);
         columnModel.getColumn(1).setPreferredWidth(200);
         columnModel.getColumn(2).setPreferredWidth(200);
+        columnModel.getColumn(3).setPreferredWidth(150);
         if (choix == 2) {
-            columnModel.getColumn(3).setPreferredWidth(150);
+            columnModel.getColumn(4).setPreferredWidth(150);
         }
         
         tableAffichage.setRowHeight(30);

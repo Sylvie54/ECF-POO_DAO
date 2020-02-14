@@ -28,9 +28,10 @@ public class Connexion  {
         File fichier = null;
         try {
             final Properties prop = new Properties();
-            fichier = new File("properties");
+            fichier = new File("src/resources/database.properties");
          if (!fichier.exists())
          {
+             System.out.println("chemin absolu"); 
             fichier = new File("C:\\Users\\Acer\\Documents\\NetBeansProjects\\Projet_Client_Prospect_DAO\\ECFCliProsDAO\\src\\resources\\database.properties");  
          }   
          

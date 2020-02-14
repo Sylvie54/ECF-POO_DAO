@@ -171,6 +171,7 @@ public class ClientDAO extends DAO<Client> {
                 contrat = new Contrat(resultat.getInt("idContrat"),
                         resultat.getString("libellecontrat"),
                         resultat.getDouble("montantContrat"),
+                // transforme une date SQL en LocalDate        
                         resultat.getDate("datedebcontrat").toLocalDate(),
                         resultat.getDate("datefincontrat").toLocalDate());
                         client.getListeContrats().add(contrat);
