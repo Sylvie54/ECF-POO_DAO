@@ -37,6 +37,7 @@ public class ClientDAO extends DAO<Client> {
    @Override
     public ArrayList<Client>  liste() throws Exception{
         try {
+                
                 Statement stm = conn.createStatement(); // crÃ©ation d'un objet requÃªte directe 
                 resultat = stm.executeQuery("SELECT *  FROM client");
                 Client client;

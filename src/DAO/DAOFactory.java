@@ -11,7 +11,7 @@ import java.sql.Connection;
  *
  * @author Acer
  */
-public class DAOFactory  {
+public class DAOFactory extends AbstractDAOFactory {
    
     protected static final Connection conn = Connexion.getInstance()  ;   
    
@@ -20,10 +20,10 @@ public class DAOFactory  {
   * @return DAO
   * @throws java.lang.Exception
   */
-  public static DAO getClientDAO() throws Exception{
+  public  DAO getClientDAO() throws Exception{
     return new ClientDAO(conn);
   }
-  public static DAO getProspectDAO() throws Exception{
+  public  DAO getProspectDAO() throws Exception{
     return new ProspectDAO(conn);
   }
   

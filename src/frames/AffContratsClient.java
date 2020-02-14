@@ -5,8 +5,10 @@
  */
 package frames;
 
+import DAO.AbstractDAOFactory;
 import DAO.DAO;
 import DAO.DAOFactory;
+import ecf.client.prospect.ecfCliProspDao;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -19,6 +21,7 @@ import utilitaires.Utilitaire;
  * @author Acer
  */
 public class AffContratsClient extends javax.swing.JFrame {
+    static AbstractDAOFactory adf = ecfCliProspDao.choixFactory();
 
     /**
      * Creates new form AffContratsClient
@@ -33,7 +36,7 @@ public class AffContratsClient extends javax.swing.JFrame {
      */
     public AffContratsClient(String raisonSociale) throws Exception {
         initComponents();
-        DAO<Client> clientDao = DAOFactory.getClientDAO();
+        DAO<Client> clientDao = adf.getClientDAO();
         Client client = clientDao.find(raisonSociale);
         DefaultTableModel modelSociete;
         String entete[] = {"identifiant", "libelle", "montant", "date de début de contrat", "date de fin de contrat"};

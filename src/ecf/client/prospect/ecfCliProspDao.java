@@ -5,6 +5,7 @@
  */
 package ecf.client.prospect;
 
+import DAO.AbstractDAOFactory;
 import DAO.DAO;
 import DAO.DAOFactory;
 import frames.MenuPrincipal;
@@ -23,10 +24,12 @@ public class ecfCliProspDao {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
         try {
-            DAO<Client> clientDao = DAOFactory.getClientDAO();
+            AbstractDAOFactory adf = choixFactory();
+            DAO<Client> clientDao = adf.getClientDAO();
             ListeClients.setListeClient(clientDao.liste());
-            DAO<Prospect> prospectDao = DAOFactory.getProspectDAO();
+            DAO<Prospect> prospectDao = adf.getProspectDAO();
             ListeProspects.setListeProspects(prospectDao.liste());
         }
            
@@ -43,5 +46,10 @@ public class ecfCliProspDao {
         MenuPrincipal menuPrincipal = new MenuPrincipal();
         menuPrincipal.setVisible(true);
     } 
+    public static AbstractDAOFactory choixFactory() {
+        AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
+        AbstractDAOFactory adfJson = AbstractDAOFactory.getFactory(AbstractDAOFactory.Json_DAO_FACTORY);
+        return adfJson;
+    }
     
 }
