@@ -7,6 +7,9 @@ package frames;
 
 import DAO.DAO;
 import DAO.DAOFactory;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -14,7 +17,7 @@ import metier.classes.Client;
 import metier.classes.Contrat;
 
 /**
- *
+ * interface d'affichage des contrats d'un client sélectionné dans le menu principal
  * @author Acer
  */
 public class AffContratsClient extends javax.swing.JFrame {
@@ -25,35 +28,41 @@ public class AffContratsClient extends javax.swing.JFrame {
     public AffContratsClient() {
         initComponents();
     }
+    /**
+     * constructeur de la frame
+     * @param raisonSociale raison sociale du client sélectionné dans le menu principal
+     * @throws Exception 
+     */
     public AffContratsClient(String raisonSociale) throws Exception {
         initComponents();
-        
-        DAO<Client> clientDao =  clientDao = DAOFactory.getClientDAO();
+        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd MMM YYYY");
+        DAO<Client> clientDao = DAOFactory.getClientDAO();
         Client client = clientDao.find(raisonSociale);
-        System.out.println("dao ok" + client.getAdrSociete());
         DefaultTableModel modelSociete;
-            String entete[] = {"identifiant", "libelle", "montant", "date de début de contrat", "date de fin de contrat"};
-            modelSociete = new DefaultTableModel(new Object[][]{}, entete);
-            lblTitre.setText("Liste des contrats pour le client : " + client.getRsSociete());
-            Double total = 0.0;
-            for (Contrat contrat : client.getListeContrats()) {
-         
-                total = total + contrat.getMontantContrat();
-                modelSociete.addRow(new Object[]{contrat.getIdContrat(),
-                                                contrat.getLibelleContrat(),
-                                                contrat.getMontantContrat(),
-                                                contrat.getDateDebutContrat(),
-                                                contrat.getDateFinContrat()});
-            }
+        String entete[] = {"identifiant", "libelle", "montant", "date de début de contrat", "date de fin de contrat"};
+        modelSociete = new DefaultTableModel(new Object[][]{}, entete);
+        lblTitre.setText("Liste des contrats pour le client : " + client.getRsSociete());
+        Double total = 0.0;
+        
+        for (Contrat contrat : client.getListeContrats()) {
+            total = total + contrat.getMontantContrat();
+            String dateDebut = contrat.getDateDebutContrat().format(formatDate);
+            String dateFin = contrat.getDateFinContrat().format(formatDate);
+            modelSociete.addRow(new Object[]{contrat.getIdContrat(),
+                                            contrat.getLibelleContrat(),
+                                            contrat.getMontantContrat(),
+                                            dateDebut,
+                                            dateFin});
+        }
         lblTotalContrats.setText("montant total des contrats : " + total);
         jtblListeContrats.setModel(modelSociete);
         jtblListeContrats.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumnModel columnModel = jtblListeContrats.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(80);
-        columnModel.getColumn(1).setPreferredWidth(200);
+        columnModel.getColumn(1).setPreferredWidth(300);
         columnModel.getColumn(2).setPreferredWidth(100);
-        columnModel.getColumn(3).setPreferredWidth(200);
-        columnModel.getColumn(4).setPreferredWidth(200);
+        columnModel.getColumn(3).setPreferredWidth(150);
+        columnModel.getColumn(4).setPreferredWidth(150);
         jtblListeContrats.setRowHeight(30);
         
     }    

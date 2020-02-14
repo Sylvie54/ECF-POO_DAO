@@ -53,14 +53,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panelAction = new javax.swing.JPanel();
         btnAfficher = new javax.swing.JButton();
         btnSuppression = new javax.swing.JButton();
-        lblChoix = new javax.swing.JLabel();
         btnCreation = new javax.swing.JButton();
         btnModification = new javax.swing.JButton();
         btnAffichageContrat = new javax.swing.JButton();
+        lblChoix = new javax.swing.JLabel();
         btnRetour = new javax.swing.JButton();
         panelCombo = new javax.swing.JPanel();
         cbxChoix = new javax.swing.JComboBox<>();
         btnValidation = new javax.swing.JButton();
+        lblCombo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1000, 1000));
@@ -129,8 +130,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        lblChoix.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         btnCreation.setText("Création");
         btnCreation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,40 +151,42 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblChoix.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblChoix.setText("jLabel2");
+
         javax.swing.GroupLayout panelActionLayout = new javax.swing.GroupLayout(panelAction);
         panelAction.setLayout(panelActionLayout);
         panelActionLayout.setHorizontalGroup(
             panelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelActionLayout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addComponent(lblChoix, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelActionLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(22, 22, 22)
                 .addComponent(btnCreation)
-                .addGap(34, 34, 34)
+                .addGap(27, 27, 27)
                 .addComponent(btnModification)
-                .addGap(18, 18, 18)
-                .addComponent(btnSuppression)
-                .addGap(18, 18, 18)
-                .addComponent(btnAfficher)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAffichageContrat, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblChoix, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelActionLayout.createSequentialGroup()
+                        .addComponent(btnSuppression)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAfficher)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAffichageContrat, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         panelActionLayout.setVerticalGroup(
             panelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelActionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblChoix, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(25, 25, 25)
+                .addComponent(lblChoix, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(panelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSuppression)
-                    .addComponent(btnAfficher)
                     .addComponent(btnCreation)
                     .addComponent(btnModification)
+                    .addComponent(btnSuppression)
+                    .addComponent(btnAfficher)
                     .addComponent(btnAffichageContrat))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         btnRetour.setText("Retour");
@@ -195,6 +196,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        panelCombo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         btnValidation.setText("Valider");
         btnValidation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,24 +205,34 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblCombo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblCombo.setText("jLabel2");
+
         javax.swing.GroupLayout panelComboLayout = new javax.swing.GroupLayout(panelCombo);
         panelCombo.setLayout(panelComboLayout);
         panelComboLayout.setHorizontalGroup(
             panelComboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelComboLayout.createSequentialGroup()
-                .addGap(0, 240, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnValidation))
             .addGroup(panelComboLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cbxChoix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addGroup(panelComboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelComboLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cbxChoix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelComboLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(lblCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         panelComboLayout.setVerticalGroup(
             panelComboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelComboLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(7, 7, 7)
+                .addComponent(lblCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbxChoix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
                 .addComponent(btnValidation))
         );
 
@@ -228,52 +241,52 @@ public class MenuPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnQuitter)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(panelCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 644, Short.MAX_VALUE)
+                                .addGap(0, 625, Short.MAX_VALUE)
                                 .addComponent(btnRetour))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(panelAction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(btnQuitter)))
                 .addGap(96, 96, 96))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(313, 313, 313)
-                        .addComponent(labelTitre))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(288, 288, 288)
-                        .addComponent(panelChoix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panelChoix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(313, 313, 313)
+                        .addComponent(labelTitre)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRetour)
-                .addGap(72, 72, 72)
-                .addComponent(btnQuitter)
-                .addGap(123, 123, 123))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addComponent(labelTitre)
                 .addGap(76, 76, 76)
                 .addComponent(panelChoix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
-                        .addComponent(panelCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(203, 203, 203))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                         .addComponent(panelAction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(241, 241, 241))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(btnRetour)
+                .addGap(72, 72, 72)
+                .addComponent(btnQuitter)
+                .addGap(123, 123, 123))
         );
 
         pack();
@@ -293,6 +306,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientActionPerformed
+        // choix 1 gestion des clients
         choix = 1;
         lblChoix.setText("Clients");
         panelAction.setVisible(true);
@@ -334,6 +348,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         else
         {
             Societe societe = null;
+            // récup de l'objet sélectionné dans la combobox
             if (choix == 1)
             {
                 societe = ListeClients.getListeClient().get(cbxChoix.getSelectedIndex()-1);
@@ -349,6 +364,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 Formulaire_client_prospect formulaire_Client = new Formulaire_client_prospect(societe, modifSup, index);
                 formulaire_Client.setVisible(true);
             }
+            // ---------------   modifSup = 3 : affichage des contrats du client
             else { // modifSup = 3 : affichage contrats
                 Client client = (Client)societe;
                 System.out.println(client.getRsSociete());
@@ -371,6 +387,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnValidationActionPerformed
 
     private void btnProspectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProspectActionPerformed
+        // choix 2 gestion des prospects        
         choix = 2;
         lblChoix.setText("Prospects");
         panelAction.setVisible(true);
@@ -380,6 +397,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProspectActionPerformed
 
     private void btnSuppressionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuppressionActionPerformed
+        // supression
         modifSup = 2;
         selectionSociete();
     }//GEN-LAST:event_btnSuppressionActionPerformed
@@ -400,13 +418,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreationActionPerformed
 
     private void btnModificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificationActionPerformed
-      
+       // modification
        modifSup = 1;
        selectionSociete();
                                               
     }//GEN-LAST:event_btnModificationActionPerformed
 
     private void btnAffichageContratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAffichageContratActionPerformed
+        // affichage des contrats d'un client
         modifSup = 3;
         selectionSociete();
     }//GEN-LAST:event_btnAffichageContratActionPerformed
@@ -420,6 +439,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // remplissage combo box client si choix = 1, prospect sinon
        if (choix == 1 )
        {
+            lblCombo.setText("Gestion des clients");
             // Tri avec la classe static TriListeClient de la classe ListClient
             Collections.sort(ListeClients.getListeClient(),new ListeClients.TriListeClient());
             cbxChoix.addItem("sélectionnez un client ");
@@ -432,6 +452,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }    
         else
         {
+            lblCombo.setText("Gestion des prospects");
             // Tri avec la classe Triliste implémentant l'interface Comparator typé Societe
             Collections.sort(ListeProspects.getListeProspects(),new TriListe());
             cbxChoix.addItem("sélectionnez un prospect ");
@@ -497,6 +518,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxChoix;
     private javax.swing.JLabel labelTitre;
     private javax.swing.JLabel lblChoix;
+    private javax.swing.JLabel lblCombo;
     private javax.swing.JPanel panelAction;
     private javax.swing.JPanel panelChoix;
     private javax.swing.JPanel panelCombo;

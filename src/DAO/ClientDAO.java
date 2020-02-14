@@ -132,7 +132,6 @@ public class ClientDAO extends DAO<Client> {
     public void delete(Client client) throws Exception {
         String query = "DELETE FROM client WHERE id = ? ";
         try(PreparedStatement pstatement = conn.prepareStatement(query)){
-           
             //  Recuperation des parametres pour le PreparedStatement
             pstatement.setInt(1, client.getIdSociete());
             //  Execution du PreparedStatement pour modif
@@ -141,7 +140,12 @@ public class ClientDAO extends DAO<Client> {
             SQLex.printStackTrace();
         }
     }
-     
+    /**
+     * méthode DAO qui retourne un objet Client y compris ses contrats 
+     * @param rsSociete raison sociale du client à retourner
+     * @return objet client + ses contrats
+     * @throws Exception 
+     */ 
     public Client find(String rsSociete) throws Exception {
         Client client=null;
         try {
@@ -158,7 +162,6 @@ public class ClientDAO extends DAO<Client> {
                         resultat.getInt("chiffreaffaire"));
                 ListeClients.getListeClient().add(client);
             }
-            System.out.println(idClient);
             PreparedStatement stmContrat = conn.prepareStatement("SELECT *  FROM contrat where idclient =  ?"); 
             stmContrat.setInt(1, idClient);
             resultat = stmContrat.executeQuery();
@@ -170,7 +173,6 @@ public class ClientDAO extends DAO<Client> {
                         resultat.getDouble("montantContrat"),
                         resultat.getDate("datedebcontrat").toLocalDate(),
                         resultat.getDate("datefincontrat").toLocalDate());
-                        System.out.println("passage contrat");
                         client.getListeContrats().add(contrat);
             }
     

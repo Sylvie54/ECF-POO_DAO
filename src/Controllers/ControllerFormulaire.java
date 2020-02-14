@@ -22,7 +22,7 @@ public class ControllerFormulaire {
     public static void create(Societe societe) throws Exception {
         if (societe instanceof Client) {
             Client client = (Client)societe;    
-            DAO<Client> clientDao =  clientDao = DAOFactory.getClientDAO();
+            DAO<Client> clientDao = DAOFactory.getClientDAO();
             int identifiant = clientDao.create(client);
             client.setIdSociete(identifiant);
             ListeClients.getListeClient().add(client);
