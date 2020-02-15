@@ -57,7 +57,6 @@ public class Affichage extends javax.swing.JFrame {
                 else {
                     interre = "non";
                 } 
-                System.out.println("for prospect");
                 modelSociete.addRow(new Object[]{prospect.getIdSociete(),
                 prospect.getRsSociete(),
                 prospect.getAdrSociete(),

@@ -15,13 +15,16 @@ import metier.classes.Client;
  */
 public class JsonClientDAO  extends DAO<Client>{
     private static final Connection conn = null;
+    private static int indice = 0; 
     
     public JsonClientDAO(Connection conn) {
     super(conn);
   }
     
     public  int create(Client client) throws Exception {
-        return 0;
+        System.out.println("create Json Client à coder");
+        indice++;
+        return indice;
     }
 
   /**
@@ -31,7 +34,7 @@ public class JsonClientDAO  extends DAO<Client>{
   */
     @Override
   public  void delete(Client client) throws Exception {
-      
+        System.out.println("delete Json Client à coder");
   }
 
   /**
@@ -42,7 +45,7 @@ public class JsonClientDAO  extends DAO<Client>{
   */
     @Override
   public void update(Client client) throws Exception {
-      
+      System.out.println("update Json Client à coder");
   }
  
   /**
@@ -66,6 +69,7 @@ public class JsonClientDAO  extends DAO<Client>{
   
   
   public Client find(String raisonSociale) throws Exception {
+      System.out.println("rien à trouver pour Client");
       return null;
   }
 }

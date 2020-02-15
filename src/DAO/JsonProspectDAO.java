@@ -16,13 +16,16 @@ import metier.classes.Prospect;
  */
 public class JsonProspectDAO extends DAO<Prospect>{
     private static final Connection conn = null;
-    
+    private static int indice = 0; 
+   
     public JsonProspectDAO(Connection conn) {
     super(conn);
   }
     
     public  int create(Prospect prospect) throws Exception {
-        return 0;
+        System.out.println("create Json Prospect à coder");
+        indice++;
+        return indice;
     }
 
   /**
@@ -31,8 +34,8 @@ public class JsonProspectDAO extends DAO<Prospect>{
   * @throws java.lang.Exception 
   */
     @Override
-  public  void delete(Prospect prospect) throws Exception {
-      
+    public  void delete(Prospect prospect) throws Exception {
+        System.out.println("delete Json Prospect à coder");
   }
 
   /**
@@ -42,31 +45,25 @@ public class JsonProspectDAO extends DAO<Prospect>{
   * @throws java.lang.Exception
   */
     @Override
-  public void update(Prospect prospect) throws Exception {
-      
+    public void update(Prospect prospect) throws Exception {
+        System.out.println("updatete Json Prospect à coder");
   }
  
-  /**
-  * Méthode de recherche des informations
-  * @param id
-  * @return T
-  */
- // public abstract T find(int id) throws Exception;
-  
   /**
   * Méthode de liste
   * @return T
      * @throws java.lang.Exception
   */
     @Override
-  public  ArrayList<Prospect> liste() throws Exception {
+    public  ArrayList<Prospect> liste() throws Exception {
        System.out.println("liste client vide");
        ArrayList<Prospect> listeProspects = new ArrayList<Prospect>();
-      return listeProspects;
+       return listeProspects;
   }
   
   
-  public Prospect find(String raisonSociale) throws Exception {
-      return null;
+    public Prospect find(String raisonSociale) throws Exception {
+        System.out.println(" Json Prospect rien à trouver");
+        return null;
   }
 }
