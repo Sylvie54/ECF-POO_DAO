@@ -44,7 +44,8 @@ public class ProspectDAO extends DAO<Prospect>{
                             resultat.getString("raisonsociale"),
                             resultat.getString("adresse"),
                             resultat.getInt("chiffreaffaire"),
-                            resultat.getDate("dateprospection"),
+                    // transforme une date SQL en LocalDate         
+                            resultat.getDate("dateprospection").toLocalDate(),
                             resultat.getInt("interesse"));
                     ListeProspects.getListeProspects().add(prospect);
                 }
@@ -87,8 +88,8 @@ public class ProspectDAO extends DAO<Prospect>{
             pstatement.setString(1, prospect.getRsSociete());
             pstatement.setString(2, prospect.getAdrSociete());
             pstatement.setLong(3, prospect.getCaSociete());
-            java.sql.Date sqlDate = new java.sql.Date(prospect.getDateProspection().getTime());
-            pstatement.setDate(4,sqlDate );
+            // tranforme une LocalDate en date SQL
+            pstatement.setDate(4,Date.valueOf(prospect.getDateProspection()) );
             pstatement.setInt(5, prospect.getInterresse());
             //  Execution du PreparedStatement pour insertion
             pstatement.executeUpdate();
@@ -115,6 +116,7 @@ public class ProspectDAO extends DAO<Prospect>{
                 + "SET raisonsociale = ? "
                 + ", adresse = ? "
                 + ",chiffreaffaire = ? "
+                + ",dateprospection = ?" 
                 + ",interesse = ? "
                 + "WHERE id = ? ";
         try(PreparedStatement pstatement = conn.prepareStatement(query)){
@@ -122,8 +124,10 @@ public class ProspectDAO extends DAO<Prospect>{
             pstatement.setString(1, prospect.getRsSociete());
             pstatement.setString(2, prospect.getAdrSociete());
             pstatement.setLong(3, prospect.getCaSociete());
-            pstatement.setInt(4, prospect.getInterresse());
-            pstatement.setInt(5, prospect.getIdSociete());
+            // tranforme une LocalDate en date SQL
+            pstatement.setDate(4,Date.valueOf(prospect.getDateProspection()) );
+            pstatement.setInt(5, prospect.getInterresse());
+            pstatement.setInt(6, prospect.getIdSociete());
             //  Execution du PreparedStatement pour modif
             pstatement.executeUpdate();
         }catch(SQLException SQLex){

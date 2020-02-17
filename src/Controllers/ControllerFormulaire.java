@@ -5,8 +5,9 @@
  */
 package Controllers;
 
+import DAO.AbstractDAOFactory;
 import DAO.DAO;
-import DAO.DAOFactory;
+import ecf.client.prospect.ecfCliProspDao;
 import metier.classes.Client;
 import metier.classes.ListeClients;
 import metier.classes.ListeProspects;
@@ -18,52 +19,67 @@ import metier.classes.Societe;
  * @author Acer
  */
 public class ControllerFormulaire {
-    
+        static AbstractDAOFactory adf = ecfCliProspDao.choixFactory();
+        
     public static void create(Societe societe) throws Exception {
-        if (societe instanceof Client) {
-            Client client = (Client)societe;    
-            DAO<Client> clientDao = DAOFactory.getClientDAO();
-            int identifiant = clientDao.create(client);
-            client.setIdSociete(identifiant);
-            ListeClients.getListeClient().add(client);
+        int identifiant;
+        String typeSociete = societe.getClass().getSimpleName();
+        switch (typeSociete) {
+                case "Client" :
+                Client client = (Client)societe;    
+                DAO<Client> clientDao = adf.getClientDAO();
+                identifiant = clientDao.create(client);
+                client.setIdSociete(identifiant);
+                ListeClients.getListeClient().add(client);
+                break;
+            case "Prospect" : 
+                Prospect prospect = (Prospect)societe;    
+                DAO<Prospect> prospectDao = adf.getProspectDAO();
+                identifiant = prospectDao.create(prospect);
+                prospect.setIdSociete(identifiant);
+                ListeProspects.getListeProspects().add(prospect);
+                break;
+            default :
+                throw new Exception ("classe inconnue" + typeSociete); 
         }
-        else {
-            Prospect prospect = (Prospect)societe;    
-            DAO<Prospect> prospectDao =  prospectDao = DAOFactory.getProspectDAO();
-            int identifiant = prospectDao.create(prospect);
-            prospect.setIdSociete(identifiant);
-            ListeProspects.getListeProspects().add(prospect);
-    }
     } 
+    
     public static void update(Societe societe) throws Exception {
-        if (societe instanceof Client) {
-            DAO<Client> clientDao = DAOFactory.getClientDAO();
-            Client client = (Client)societe;   
-            clientDao.update(client);
-            int index = ListeClients.getListeClient().indexOf(client);
-            ListeClients.getListeClient().set(index, client); 
-        }
-        else {
-            DAO<Prospect> prospectDAO = DAOFactory.getProspectDAO();
-            Prospect prospect = (Prospect)societe;
-            prospectDAO.update(prospect);
-            int index = ListeProspects.getListeProspects().indexOf(prospect);
-            ListeProspects.getListeProspects().set(index, prospect);
+        int index;
+        String typeSociete = societe.getClass().getSimpleName();
+        switch (typeSociete) {
+            case "Client" :
+                Client client = (Client)societe;    
+                DAO<Client> clientDao = adf.getClientDAO();
+                clientDao.update(client);
+                index = ListeClients.getListeClient().indexOf(client);
+                ListeClients.getListeClient().set(index, client); 
+            case "Prospect" :
+                DAO<Prospect> prospectDAO = adf.getProspectDAO();
+                Prospect prospect = (Prospect)societe;
+                prospectDAO.update(prospect);
+                index = ListeProspects.getListeProspects().indexOf(prospect);
+                ListeProspects.getListeProspects().set(index, prospect);
+            default :
+                throw new Exception ("classe inconnue" + typeSociete);     
         }
     } 
     public static void delete(Societe societe) throws Exception {
-        if (societe instanceof Client) {
-            DAO<Client> clientDao = DAOFactory.getClientDAO();
-            Client client = (Client)societe;   
-            clientDao.delete(client);
-            ListeClients.getListeClient().remove(client);
+        String typeSociete = societe.getClass().getSimpleName();
+        switch (typeSociete) {  
+            case "Client" :
+                DAO<Client> clientDao = adf.getClientDAO();
+                Client client = (Client)societe;   
+                clientDao.delete(client);
+                ListeClients.getListeClient().remove(client);
+            case "Prospect" :
+                DAO<Prospect> prospectDAO = adf.getProspectDAO();
+                Prospect prospect = (Prospect)societe;  
+                prospectDAO.delete(prospect);
+                ListeProspects.getListeProspects().remove(prospect);
+            default :
+                throw new Exception ("classe inconnue" + typeSociete); 
         }
-        else {
-            DAO<Prospect> prospectDAO = DAOFactory.getProspectDAO();
-            Prospect prospect = (Prospect)societe;  
-            prospectDAO.delete(prospect);
-            ListeProspects.getListeProspects().remove(prospect);
-        }
-        
     }
 }
+

@@ -10,6 +10,8 @@ import metier.classes.*;
 import metier.classes.Prospect.Interre;
 import metier.exceptions.MetiersException;
 import Controllers.*;
+import java.time.LocalDate;
+import utilitaires.Utilitaire;
 
 /**
  *
@@ -71,7 +73,7 @@ public class Formulaire_client_prospect extends javax.swing.JFrame {
         if  (societe instanceof Prospect )
             { 
                 Prospect leProspect = (Prospect)societe; 
-                datePickersDateProspection.setDate(leProspect.getDateProspection());
+                txtdateProsp.setText(leProspect.getDateProspection().format(utilitaires.Utilitaire.FORMADATE));
                 if ( leProspect.getInterresse() == 0) {
                     cbxInterre.setSelectedIndex(0);
                 }
@@ -79,7 +81,7 @@ public class Formulaire_client_prospect extends javax.swing.JFrame {
                     cbxInterre.setSelectedIndex(1);
                 }
                 if (p_modifSup == 2) {
-                    datePickersDateProspection.setEditable(false);
+                    txtdateProsp.setEditable(false);
                     cbxInterre.setEditable(false);
                             
                 }
@@ -106,9 +108,9 @@ public class Formulaire_client_prospect extends javax.swing.JFrame {
         txtChiffreAffaire = new javax.swing.JTextField();
         btnValidation = new javax.swing.JButton();
         lblDateProspection = new javax.swing.JLabel();
-        datePickersDateProspection = new org.jdesktop.swingx.JXDatePicker();
         cbxInterre = new javax.swing.JComboBox<>();
         lblInterre = new javax.swing.JLabel();
+        txtdateProsp = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -161,7 +163,7 @@ public class Formulaire_client_prospect extends javax.swing.JFrame {
             }
         });
 
-        lblDateProspection.setText("Date Prospection");
+        lblDateProspection.setText("Date Prospection (jj-mm-aaaa)");
 
         lblInterre.setText("Interressé ?");
 
@@ -174,19 +176,21 @@ public class Formulaire_client_prospect extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbNomClient)
                             .addComponent(lbAdresse)
                             .addComponent(lblCa)
-                            .addComponent(lblDateProspection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblInterre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblInterre, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtChiffreAffaire, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(datePickersDateProspection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxInterre, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbxInterre, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblDateProspection, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtdateProsp, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 373, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -209,23 +213,22 @@ public class Formulaire_client_prospect extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(passage_param)
                 .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbNomClient)
-                            .addComponent(txtNomClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbAdresse)
-                            .addComponent(txtAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCa)
-                            .addComponent(txtChiffreAffaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
-                        .addComponent(lblDateProspection))
-                    .addComponent(datePickersDateProspection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNomClient)
+                    .addComponent(txtNomClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbAdresse)
+                    .addComponent(txtAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCa)
+                    .addComponent(txtChiffreAffaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDateProspection)
+                    .addComponent(txtdateProsp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxInterre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblInterre))
@@ -295,7 +298,7 @@ public class Formulaire_client_prospect extends javax.swing.JFrame {
                     }
                         
                     Prospect prospect = (Prospect)societe;
-                    prospect.setDateProspection(datePickersDateProspection.getDate());
+                    prospect.setDateProspection(testDateProsp());
                     prospect.setInterresse(interre);
                     ControllerFormulaire.update(prospect);
                 } 
@@ -351,9 +354,9 @@ public class Formulaire_client_prospect extends javax.swing.JFrame {
                     else {
                         interre = 1;
                     }
-                   
+                   LocalDate dateprosp = testDateProsp();
                    Prospect prospect = new Prospect(0, txtNomClient.getText(), txtAdresse.getText(),
-                   Long.parseLong(txtChiffreAffaire.getText()), datePickersDateProspection.getDate(), interre);
+                   Long.parseLong(txtChiffreAffaire.getText()), dateprosp, interre);
                    ControllerFormulaire.create(prospect);
                    
                 }
@@ -419,15 +422,24 @@ public class Formulaire_client_prospect extends javax.swing.JFrame {
             }
         });
     }
-    
+    private LocalDate testDateProsp() throws Exception{
+       LocalDate dateprosp=null;
+       try { 
+       dateprosp = LocalDate.parse(txtdateProsp.getText(),utilitaires.Utilitaire.FORMADATE);
+       }
+       catch (Exception e) {
+           throw  new MetiersException ("la date de prospection n'est pas au bon format");
+       }
+       return dateprosp;
+    }
 
-    public final void affichage()
+    private final void affichage()
     {         
         if ((societe instanceof Client) || (choix == 1))
         {   
            lblTitre.setText("Gestion des Clients");
            lblDateProspection.setVisible(false);
-           datePickersDateProspection.setVisible(false);
+           txtdateProsp.setVisible(false);
            lblInterre.setVisible(false);
            cbxInterre.setVisible(false);
         }
@@ -435,7 +447,7 @@ public class Formulaire_client_prospect extends javax.swing.JFrame {
         {
            lblTitre.setText("Gestion des prospects");
            lblDateProspection.setVisible(true);
-           datePickersDateProspection.setVisible(true);
+           txtdateProsp.setVisible(true);
         }
     }
     private void  initComboInterre() {
@@ -450,7 +462,6 @@ public class Formulaire_client_prospect extends javax.swing.JFrame {
     private javax.swing.JButton btnRetour;
     private javax.swing.JButton btnValidation;
     private javax.swing.JComboBox<String> cbxInterre;
-    private org.jdesktop.swingx.JXDatePicker datePickersDateProspection;
     private javax.swing.JLabel lbAdresse;
     private javax.swing.JLabel lbNomClient;
     private javax.swing.JLabel lblCa;
@@ -461,6 +472,7 @@ public class Formulaire_client_prospect extends javax.swing.JFrame {
     private javax.swing.JTextField txtAdresse;
     private javax.swing.JTextField txtChiffreAffaire;
     private javax.swing.JTextField txtNomClient;
+    private javax.swing.JTextField txtdateProsp;
     // End of variables declaration//GEN-END:variables
 }
 

@@ -37,6 +37,7 @@ public class ClientDAO extends DAO<Client> {
    @Override
     public ArrayList<Client>  liste() throws Exception{
         try {
+                
                 Statement stm = conn.createStatement(); // crÃ©ation d'un objet requÃªte directe 
                 resultat = stm.executeQuery("SELECT *  FROM client");
                 Client client;
@@ -171,6 +172,7 @@ public class ClientDAO extends DAO<Client> {
                 contrat = new Contrat(resultat.getInt("idContrat"),
                         resultat.getString("libellecontrat"),
                         resultat.getDouble("montantContrat"),
+                // transforme une date SQL en LocalDate        
                         resultat.getDate("datedebcontrat").toLocalDate(),
                         resultat.getDate("datefincontrat").toLocalDate());
                         client.getListeContrats().add(contrat);

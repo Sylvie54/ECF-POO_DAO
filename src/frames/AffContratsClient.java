@@ -5,22 +5,23 @@
  */
 package frames;
 
+import DAO.AbstractDAOFactory;
 import DAO.DAO;
 import DAO.DAOFactory;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
+import ecf.client.prospect.ecfCliProspDao;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import metier.classes.Client;
 import metier.classes.Contrat;
+import utilitaires.Utilitaire;
 
 /**
  * interface d'affichage des contrats d'un client sélectionné dans le menu principal
  * @author Acer
  */
 public class AffContratsClient extends javax.swing.JFrame {
+    static AbstractDAOFactory adf = ecfCliProspDao.choixFactory();
 
     /**
      * Creates new form AffContratsClient
@@ -35,8 +36,7 @@ public class AffContratsClient extends javax.swing.JFrame {
      */
     public AffContratsClient(String raisonSociale) throws Exception {
         initComponents();
-        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd MMM YYYY");
-        DAO<Client> clientDao = DAOFactory.getClientDAO();
+        DAO<Client> clientDao = adf.getClientDAO();
         Client client = clientDao.find(raisonSociale);
         DefaultTableModel modelSociete;
         String entete[] = {"identifiant", "libelle", "montant", "date de début de contrat", "date de fin de contrat"};
@@ -46,8 +46,9 @@ public class AffContratsClient extends javax.swing.JFrame {
         
         for (Contrat contrat : client.getListeContrats()) {
             total = total + contrat.getMontantContrat();
-            String dateDebut = contrat.getDateDebutContrat().format(formatDate);
-            String dateFin = contrat.getDateFinContrat().format(formatDate);
+            // affiche les dates au format donné par la constante FORMADATE de la classe Utilitaire du packages utilitaires
+            String dateDebut = contrat.getDateDebutContrat().format(Utilitaire.FORMADATE);
+            String dateFin = contrat.getDateFinContrat().format(Utilitaire.FORMADATE);
             modelSociete.addRow(new Object[]{contrat.getIdContrat(),
                                             contrat.getLibelleContrat(),
                                             contrat.getMontantContrat(),

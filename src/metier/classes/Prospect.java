@@ -5,6 +5,7 @@
  */
 package metier.classes;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -16,7 +17,7 @@ public class Prospect extends Societe {
         oui,
         non;
     }
-    private Date dateProspection;
+    private LocalDate dateProspection;
     private int interresse;
 
     public int getInterresse() {
@@ -30,14 +31,14 @@ public class Prospect extends Societe {
     /**
      * @return the dateProspection
      */
-    public final Date getDateProspection() {
+    public final LocalDate getDateProspection() {
         return dateProspection;
     }
 
     /**
      * @param dateProspection the dateProspection to set
      */
-    public final void setDateProspection(Date dateProspection) {
+    public final void setDateProspection(LocalDate dateProspection) throws Exception {
         this.dateProspection = dateProspection;
     }
     /**
@@ -72,7 +73,8 @@ public class Prospect extends Societe {
      * @param dateProspection : date de prospection
      * @throws Exception 
      */
-    public Prospect(int IdSociete, String RsSociete, String AdrSociete,long CaSociete, Date dateProspection, int interre) throws Exception
+    public Prospect(int IdSociete, String RsSociete, String AdrSociete,
+            long CaSociete, LocalDate dateProspection, int interre) throws Exception
     {
         super (IdSociete,RsSociete,AdrSociete, CaSociete);
         this.setDateProspection(dateProspection);
@@ -104,7 +106,7 @@ public class Prospect extends Societe {
             long CaSociete,
             String CommentaireSociete,
             long NbreEmplSociete,
-            Date dateProspection) throws Exception
+            LocalDate dateProspection) throws Exception
     {
         super(IdSociete,RsSociete,TypeSociete,DomaineSociete,AdrSociete,
         TelSociete,CaSociete,CommentaireSociete,NbreEmplSociete);
@@ -119,7 +121,7 @@ public class Prospect extends Societe {
             long CaSociete,
             String CommentaireSociete,
             long NbreEmplSociete,
-            Date dateProspection,
+            LocalDate dateProspection,
             int interresse) throws Exception
     {
         super(IdSociete,RsSociete,TypeSociete,DomaineSociete,AdrSociete,

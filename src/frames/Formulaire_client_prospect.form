@@ -28,21 +28,24 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblTitre" min="-2" pref="265" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lbNomClient" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbAdresse" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblCa" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblDateProspection" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblInterre" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblInterre" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtNomClient" min="-2" pref="402" max="-2" attributes="0"/>
                           <Component id="txtAdresse" alignment="0" min="-2" pref="617" max="-2" attributes="0"/>
                           <Component id="txtChiffreAffaire" alignment="0" min="-2" pref="199" max="-2" attributes="0"/>
-                          <Component id="datePickersDateProspection" min="-2" max="-2" attributes="0"/>
                           <Component id="cbxInterre" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
                       </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="lblDateProspection" min="-2" pref="211" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtdateProsp" min="-2" pref="148" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="0" pref="373" max="32767" attributes="0"/>
@@ -74,28 +77,26 @@
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="passage_param" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbNomClient" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNomClient" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbAdresse" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtAdresse" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblCa" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtChiffreAffaire" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                      <Component id="lblDateProspection" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="datePickersDateProspection" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbNomClient" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNomClient" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbAdresse" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtAdresse" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblCa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtChiffreAffaire" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblDateProspection" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtdateProsp" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cbxInterre" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblInterre" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -182,10 +183,8 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblDateProspection">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Date Prospection"/>
+        <Property name="text" type="java.lang.String" value="Date Prospection (jj-mm-aaaa)"/>
       </Properties>
-    </Component>
-    <Component class="org.jdesktop.swingx.JXDatePicker" name="datePickersDateProspection">
     </Component>
     <Component class="javax.swing.JComboBox" name="cbxInterre">
       <Properties>
@@ -201,6 +200,8 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Interress&#xe9; ?"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtdateProsp">
     </Component>
   </SubComponents>
 </Form>
