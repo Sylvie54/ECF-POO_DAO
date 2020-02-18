@@ -6,6 +6,7 @@
 package DAO;
 
 
+import ecf.client.prospect.ecfCliProspDao;
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -25,6 +26,10 @@ public class Connexion  {
     private static ResultSet Resultat = null;
    
     private Connexion() throws Exception {
+      AbstractDAOFactory adf = ecfCliProspDao.choixFactory();
+  
+      if (adf.getClass().getSimpleName().equals("DAOFactory")) {
+        System.out.println("Factory utilisée : " + adf.getClass().getSimpleName());  
         File fichier = null;
         try {
             final Properties prop = new Properties();
@@ -57,7 +62,7 @@ public class Connexion  {
             conn.close();
             System.exit(0);
         }
-        
+      }  
     } 
 
     public static Connection getInstance()
