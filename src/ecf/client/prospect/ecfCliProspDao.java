@@ -49,7 +49,7 @@ public class ecfCliProspDao {
     public static AbstractDAOFactory choixFactory() {
         AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
         AbstractDAOFactory adfJson = AbstractDAOFactory.getFactory(AbstractDAOFactory.Json_DAO_FACTORY);
-        return adfJson;
+        return adf;
     }
     
 }
